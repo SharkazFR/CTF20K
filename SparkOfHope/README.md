@@ -42,7 +42,9 @@ with A1 = { H( { username-value, ":", realm-value, ":", passwd } ),
 and A2 = { "AUTHENTICATE:", digest-uri-value }
 
 H being the 16 octet MD5 hash [RFC 1321] of the octet string s.
+
 KD(k, s) being H({k, ":", s}), i.e., the 16 octet hash of the string k, a colon and the string s.
+
 HEX being the representation of the 16 octet MD5 hash n as a string of 32 hex digits.
 
 In this PCAP, we have response = f8ebc5dbbd088e71874a2213a3590e6c. 
@@ -147,8 +149,11 @@ if __name__ == "__main__":
 It's important to note the difference between .digest() and .hexdigest(), with the first corresponding to RFC H() function and the latter corresponding to RFC HEX(H()) function.
 
 Unfortunately, no password matched, even with different wordlists : rockyou, richelieu, custom, etc.
+
 First I checked my implementation against the example provided at the end of the RFC :
+
 ![Pasted image 20250512234845](https://github.com/user-attachments/assets/2572da0b-5fe2-4980-8ceb-129825a73f5b)
+
 I added this python function to test it :
 ```python
 def test_rfc_example():

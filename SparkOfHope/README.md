@@ -8,7 +8,6 @@ Author: [Elf](https://cypelf.fr/)
 >
 Hint: Feel free to dig into the source code of spark to find out what specific encoding may be applied to both the username and the password
 
----
 # Writeup
 
 ## SASL Auth
@@ -178,7 +177,6 @@ def test_rfc_example():
 ```
 And it passed. 
 
----
 ## Spark implementation
 
 If our python implementation is correct, then maybe Spark implementation of SASL DIGEST-MD5 auth differs from the RFC. This is what suggets the hint provided during the CTF : 
@@ -230,7 +228,6 @@ Running it against the rockyou wordlist yields a result :
 ![[Pasted image 20250513000549.png]]
 X19IYUNrRXJfXw== base64 decoded is \_\_HaCkEr\_\_, the flag is then RM{\_\_HaCkEr\_\_}.
 
----
 # Acknowledgments
 
 Thanks to [Elf](https://cypelf.fr/) for this great CTF, which was an opportunity to learn about SASL auth. Implementing the RFC in python was a bit challenging, but mostly required focus and time.

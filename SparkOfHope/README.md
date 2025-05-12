@@ -17,7 +17,7 @@ After opening the pcap file with Wireshark we can see the following TCP stream :
 We can see the username "sparkSaslUser" meaning that we're dealing with SASL (Simple Authentication and Security Layer) auth in Spark application. The algorithm being "md5-sess" suggests that this is SASL DIGEST-MD5.
 
 Searching for SASL MD5 RFC leads us to [RFC2831](https://datatracker.ietf.org/doc/html/rfc2831) which is about "Using Digest Authentication as a SASL Mechanism". 
-Basically, this authentication method relies on both client and server calculating a response value from certain parameters exchanged and the password. The client then sends this response value and if it matches the on expected by the server, the client is authenticated.
+Basically, this authentication method relies on both client and server calculating a response value from certain parameters exchanged and the password. The client then sends this response value and if it matches the one expected by the server, the client is authenticated.
 
 According to the documentation, the response value depends on:
 

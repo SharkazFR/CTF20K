@@ -12,7 +12,7 @@ Hint: Feel free to dig into the source code of spark to find out what specific e
 
 ## SASL Auth
 After opening the pcap file with Wireshark we can see the following TCP stream :
-![[Pasted image 20250512222917.png]]
+![Pasted image 20250512222917](https://github.com/user-attachments/assets/a4e48eb8-f499-491e-88a1-f2912366b9c8)
 
 We can see the username "sparkSaslUser" meaning that we're dealing with SASL (Simple Authentication and Security Layer) auth in Spark application. The algorithm being "md5-sess" suggests that this is SASL DIGEST-MD5.
 
@@ -150,7 +150,7 @@ It's important to note the difference between .digest() and .hexdigest(), with t
 
 Unfortunately, no password matched, even with different wordlists : rockyou, richelieu, custom, etc.
 First I checked my implementation against the example provided at the end of the RFC :
-![[Pasted image 20250512234845.png]]
+![Pasted image 20250512234845](https://github.com/user-attachments/assets/2572da0b-5fe2-4980-8ceb-129825a73f5b)
 I added this python function to test it :
 ```python
 def test_rfc_example():
@@ -183,7 +183,7 @@ If our python implementation is correct, then maybe Spark implementation of SASL
 > Feel free to dig into the source code of spark to find out what specific encoding may be applied to both the username and the password
 
 Searching "sasl" in [Spark Github](https://github.com/apache/spark) leads us to this code :
-![[Pasted image 20250512235703.png]]
+![Pasted image 20250512235703](https://github.com/user-attachments/assets/9d5f1afb-2672-4d41-8d14-2a022cced30d)
 in this file : https://github.com/apache/spark/blob/37028fafc4f9fc873195a88f0840ab69edcf9d2b/common/network-common/src/main/java/org/apache/spark/network/sasl/SparkSaslClient.java
 
 We find this interesting function handling the secrets :
@@ -225,7 +225,7 @@ passwords = [base64.b64encode(pwd.encode()).decode() for pwd in passwords]
 ```
 
 Running it against the rockyou wordlist yields a result : 
-![[Pasted image 20250513000549.png]]
+![Pasted image 20250513000549](https://github.com/user-attachments/assets/c5c2dbfa-7acd-465b-87b1-c72ca282a55f)
 X19IYUNrRXJfXw== base64 decoded is \_\_HaCkEr\_\_, the flag is then RM{\_\_HaCkEr\_\_}.
 
 # Acknowledgments

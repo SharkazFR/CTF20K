@@ -53,8 +53,6 @@ Here is my python implementation :
 ```python
 import base64
 import hashlib
-import re
-from collections import OrderedDict
 from multiprocessing import Pool, cpu_count
 from tqdm import tqdm
 import base64
